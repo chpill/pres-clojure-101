@@ -1,0 +1,9 @@
+img.no-style {
+  border: none !important;
+  margin: 0 !important;
+  box-shadow: none !important;
+}
+
+p.big-parens {
+  font-size: 400px;
+}
