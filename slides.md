@@ -11,7 +11,7 @@
 
 <p class="big-parens">
   <span class="fragment">(</span>
-![Mccarthy](http://wwwcache.wraltechwire.com/asset/news/2011/10/26/10299584/JOHN_MCCARTHY-512x324.jpg)
+  <img src="images/mc-carthy.jpg" class="no-style"/>
   <span class="fragment">)</span>
 </p>
 
@@ -163,19 +163,22 @@ En javascript : ImmutableJs  (par Facebook)
 
 <img src="images/react-logo-resized.png" class="no-style">
 
-
 -----
 ## Bonne inter-opérabilité
 
-Accès aux libs Java et JS
+Accès aux libs Java et JS (pas aussi simple qu'un require, mais ça se fait).
+
+Possibilité de faire des variables mutables si besoin (transient).
 
 -----
-## Google closure compiler
- - enlève le code "mort"
+## En savoir plus
 
-Mais... annotations pas très sympa à écrire.
+<p> Rich Hickey (Créateur) </p>
+<img src="images/rich-hickey-resized.jpg" class="no-style">
+
+
+<p> David Nolen (Développeur de Clojurescript)</p>
+<img src="images/david-nolen.png" class="no-style">
 
 -----
 # Show time!
-
------
