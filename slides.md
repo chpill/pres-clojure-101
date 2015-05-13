@@ -179,6 +179,3 @@ Possibilité de faire des variables mutables si besoin (transient).
 
 <p> David Nolen (Développeur de Clojurescript)</p>
 <img src="images/david-nolen.png" class="no-style">
-
------
-# Show time!

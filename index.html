@@ -36,6 +36,12 @@
 	</head>
 
 	<body>
+          <!-- Removing this prevent any syntax highlighting... It
+          seems that syntax highlighting doesn't work if there is
+          no <code class="javascript"> tag at load time (markdown behing loaded at a
+          later time? -->
+          <pre style="display: none;"><code class="javascript">
+          </code></pre>
 
 		<div class="reveal">
 
@@ -43,21 +49,6 @@
 			<div class="slides">
 				<section data-markdown="slides.md" data-separator="-----">
 				</section>
-
-
-				<section data-state="customevent">
-					<h2>State Events</h2>
-					<p>
-						Additionally custom events can be triggered on a per slide basis by binding to the <code>data-state</code> name.
-					</p>
-					<pre><code class="javascript" data-trim contenteditable style="font-size: 18px;">
-Reveal.addEventListener( 'customevent', function() {
-	console.log( '"customevent" has fired' );
-} );
-					</code></pre>
-				</section>
-
-
 			</div>
 
 		</div>
