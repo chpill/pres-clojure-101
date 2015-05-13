@@ -15,7 +15,7 @@
   <span class="fragment">)</span>
 </p>
 
-compilation pour la JVM, et JS (Clojurescript!)
+compilation pour la JVM, et JS (Clojurescript !)
 
 -----
 ## f(x) => (f x)
@@ -29,13 +29,15 @@ Pour appeler une fonction, on la met en première position entre parenthèses
 (+ 1 2 3)
 ;; => 6
 
-(conj [1 2 3] 4)
-;; => [1 2 3 4]
+(inc 1)
+;; => 2
 
-(= true 1)
-;; => false
-(= false nil)
-;; => false
+(= 2 (inc 1))
+;; => true
+
+(def ma-hash-map {:a 1})
+(= {:a 1} ma-hash-map)
+;; => true
 ```
 
 -----
@@ -45,31 +47,83 @@ Pour appeler une fonction, on la met en première position entre parenthèses
 (reduce + [1 2 3 4])
 ;; => 10
 
-(apply + [1 2 3 4])
-;; => 10
+(filter odd? [1 2 3 4])
+;; => [2 4]
 
-(def sum-list
-  (partial apply +))
+(def inc3
+  (comp inc inc inc))
+(inc3 1)
+;; => 4
 
-(sum-list [1 2 3 4]
-;; => 10
+(def join-and-up
+  (comp upper-case
+        (partial join ", ")))
+
+(join-and-up ["a" "b" "c"])
+;; => "A, B, C"
 
 ```
 
 -----
-## Des structures de données un peu exotiques
+## Plein de structures de données!!!
 
-- set : `#{1 2 3}` => unicité!
-Union, intersection, difference...
+Les classiques {} et []
 
-- sorted-set (comme dans Redis!)
-- sorted-map
+Les sets : #{1 2 3} => contrainte d'unicité
+
+```
+(conj 2 #{1 2 3})
+;; => #{1 2 3}
+
+(intersection #{1 2} #{2 3})
+;; => #{2}
+```
+
+un peu plus exotiques: sorted-set (comme dans Redis!), sorted-map...
 
 -----
-## ... et immutable
-<!--
-Utilise des structures de données persistentes par défaut
- ![SDP](http://eclipsesource.com/blogs/wp-content/uploads/2009/12/clojure-trees.png) -->
+## Par défaut, tous les types de données sont...
+<h1 class="fragment">Immutables !!!</h1>
+
+-----
+
+<img src="images/wtf-cat.jpg" class="no-style"/>
+
+-----
+## En pratique
+
+On ne pas transformer une variable sur place :
+
+```
+(def a {:name "Bob" :surname "Dylan"})
+(def b (assoc a :surname "l'éponge"))
+
+;; a => {:name "Bob" :surname "Dylan"}
+;; b => {:name "Bob" :surname "l'éponge}
+
+(= a b)
+;; => false
+
+```
+
+-----
+## Immutabilité: Pour quoi faire?
+
+```js
+var a = { name: "Bob", surname: "Dylan" };
+var b = _.clone(a);
+
+a === b; // => false
+
+b.surname = "l'éponge";
+
+// différence entre a et b
+???????
+```
+
+-----
+## En mémoire
+
 
 ```clojure
 
@@ -91,29 +145,24 @@ Utilise des structures de données persistentes par défaut
 <img src="images/persistent2.png" class="no-style">
 
 -----
-## Immutabilité: Pour quoi faire?
-
-Réponse : Comparer des objets!!!
-
-```js
-var a = { name: "Bob", surname: "Dylan" };
-var b = _.clone(a);
-
-b.surname = "l'éponge";
-
-// en javascript, on ne peut malheureusement pas faire ça :
-if (objet1 == objet2) ...
-```
+## Exemple : un article
 
 -----
-## exemple : un article
+## Rien de nouveau sous le soleil...
 
------
-## rien de nouveau sous le soleil
 
-![git-logo](http://git-scm.com/images/logos/downloads/Git-Logo-1788C.png)
+C'est ce que git utilise pour stocker ses objets
 
-C'est ce que git utilise pour calculer les delta entre ses objets!
+=> calcul du delta entre 2 arbres très rapide!
+
+<img src="images/git-logo-resized.png" class="no-style">
+
+En javascript : ImmutableJs  (par Facebook)
+
+=> entre autre pour accélérer les rendus de React
+
+<img src="images/react-logo-resized.png" class="no-style">
+
 
 -----
 ## Bonne inter-opérabilité
